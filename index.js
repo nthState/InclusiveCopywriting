@@ -6,7 +6,7 @@ const path = require('path');
 function checkFile(src, file, words) {
     try {
     
-        core.info(`Reading...${src}${file}`)
+        //core.info(`Reading...${src}${file}`)
         
         const data = fs.readFileSync(path.resolve(`${src}${file}`), 'utf8');
 
@@ -16,13 +16,16 @@ function checkFile(src, file, words) {
             const tokens = new Set(line.split(' '))
             let intersection = new Set([...tokens].filter(x => words.has(x)));
             if (intersection.size > 0) {
+            
+                core.info(`${file} contains ${intersection}`)
+                
                 return file
             }
         }
 
         
     } catch (err) {
-        core.info(`Error...${err}`)
+       // core.info(`Error...${err}`)
     }
     
     return undefined
