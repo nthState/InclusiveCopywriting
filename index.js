@@ -42,6 +42,8 @@ async function main() {
 
         core.setOutput("files", output);
         
+        core.info(`Files...${output}`)
+        
         if (output.length > 0) {
             return core.setFailed(`Files contain bad words: ${output}`)
         }
