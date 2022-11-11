@@ -3,10 +3,26 @@ const github = require('@actions/github');
 const fs = require('fs');
 const path = require('path');
 
+const getAllFiles = function(dirPath, arrayOfFiles) {
+  files = fs.readdirSync(dirPath)
+
+  arrayOfFiles = arrayOfFiles || []
+
+  files.forEach(function(file) {
+    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
+      arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
+    } else {
+      arrayOfFiles.push(path.join(__dirname, dirPath, "/", file))
+    }
+  })
+
+  return arrayOfFiles
+}
+
 function checkFile(src, file, words) {
     try {
     
-        //core.info(`Reading...${src}${file}`)
+        core.info(`Reading...${src}${file}`)
         
         const data = fs.readFileSync(path.resolve(`${src}${file}`), 'utf8');
 
@@ -41,7 +57,8 @@ async function main() {
 
         core.info('Starting...')
         
-        const filesList = fs.readdirSync(src, (err, files) => files.filter((e) => path.extname(e).toLowerCase() === fileTypeFilter));
+        //const filesList = fs.readdirSync(src, (err, files) => files.filter((e) => path.extname(e).toLowerCase() === fileTypeFilter));
+        const filesList = getAllFiles(src).filter(file => file.endsWith(fileTypeFilter));
  
         const output = filesList.map(file => checkFile(src, file, words)).filter(n => n);
 
