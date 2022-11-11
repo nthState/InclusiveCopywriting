@@ -12,7 +12,7 @@ const getAllFiles = function(dirPath, arrayOfFiles) {
     if (fs.statSync(dirPath + "/" + file).isDirectory()) {
       arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
     } else {
-      arrayOfFiles.push(path.join(__dirname, dirPath, "/", file))
+      arrayOfFiles.push(path.join( dirPath, "/", file))
     }
   })
 
@@ -60,16 +60,13 @@ async function main() {
         core.info(`fileTypeFilter: ${fileTypeFilter}`)
         
         //const filesList = fs.readdirSync(src, (err, files) => files.filter((e) => path.extname(e).toLowerCase() === fileTypeFilter));
-        //const filesList = getAllFiles(src).filter(file => file.endsWith(fileTypeFilter));
         const filesList = getAllFiles(src)
-        core.info(`filesList: ${filesList}`)
         
         const filtered = filesList.filter(file => {
             return fileTypeFilter.some(element => {
              return file.endsWith(element) 
              });
             });
-        core.info(`filtered: ${filtered}`)
  
         const output = filtered.map(file => checkFile(src, file, words)).filter(n => n);
 
