@@ -22,9 +22,10 @@ const getAllFiles = function(dirPath, arrayOfFiles) {
 function checkFile(src, file, words) {
     try {
     
-        core.info(`Reading...${src}${file}`)
+    
+        core.info(`Reading...${file}`)
         
-        const data = fs.readFileSync(path.resolve(`${src}${file}`), 'utf8');
+        const data = fs.readFileSync(path.resolve(`${file}`), 'utf8');
 
         const lines = data.split('\n')
 
