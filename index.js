@@ -2,12 +2,14 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const fs = require('fs');
 
-function checkFile(file, words) {
+function checkFile(src, file, words) {
     try {
     
-        core.info(`Reading...${file}`)
+        core.info(`Reading...${src}/${file}`)
+        
+        const data = fs.readFileSync(path.resolve(`${src}/${file}`), 'utf8');
 
-        fs.readFile(file, 'utf-8', (err, data) => {
+//        fs.readFile(file, 'utf-8', (err, data) => {
             const lines = data.split('\n')
 
             for (let line of lines) {
@@ -18,7 +20,7 @@ function checkFile(file, words) {
                 }
             }
 
-        });
+//        });
         
     } catch (err) {
         core.info('Error...${err}')
@@ -37,7 +39,7 @@ async function main() {
         
         const filesList = fs.readdirSync(src, (err, files) => files.filter((e) => path.extname(e).toLowerCase() === fileTypeFilter));
  
-        const output = filesList.map(file => checkFile(file, words))
+        const output = filesList.map(file => checkFile(src, file, words))
 
         core.setOutput("files", []);
 
