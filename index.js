@@ -61,9 +61,13 @@ async function main() {
         
         //const filesList = fs.readdirSync(src, (err, files) => files.filter((e) => path.extname(e).toLowerCase() === fileTypeFilter));
         //const filesList = getAllFiles(src).filter(file => file.endsWith(fileTypeFilter));
-        const filesList = getAllFiles(src).filter(file => fileTypeFilter.some(element => { file.endsWith(element) }));
+        const filesListfilesList= getAllFiles(src)
+        core.info(`fileTypeFilter: ${filesList}`)
+        
+        const filtered = filesList.filter(file => fileTypeFilter.some(element => { file.endsWith(element) }));
+        core.info(`filtered: ${filtered}`)
  
-        const output = filesList.map(file => checkFile(src, file, words)).filter(n => n);
+        const output = filtered.map(file => checkFile(src, file, words)).filter(n => n);
 
         core.setOutput("files", output);
         
