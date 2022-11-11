@@ -5,25 +5,23 @@ const fs = require('fs');
 function checkFile(src, file, words) {
     try {
     
-        core.info(`Reading...${src}/${file}`)
+        core.info(`Reading...${src}${file}`)
         
-        const data = fs.readFileSync(path.resolve(`${src}/${file}`), 'utf8');
+        const data = fs.readFileSync(path.resolve(`${src}${file}`), 'utf8');
 
-//        fs.readFile(file, 'utf-8', (err, data) => {
-            const lines = data.split('\n')
+        const lines = data.split('\n')
 
-            for (let line of lines) {
-                const tokens = new Set(dataline.split(' '))
-                let intersection = new Set([...tokens].filter(x => words.has(x)));
-                if (intersection.count > 0) {
-                    return file
-                }
+        for (let line of lines) {
+            const tokens = new Set(dataline.split(' '))
+            let intersection = new Set([...tokens].filter(x => words.has(x)));
+            if (intersection.count > 0) {
+                return file
             }
+        }
 
-//        });
         
     } catch (err) {
-        core.info('Error...${err}')
+        core.info(`Error...${err}`)
     }
     
     return ""
