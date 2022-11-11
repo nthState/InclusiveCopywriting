@@ -13,7 +13,7 @@ function checkFile(src, file, words) {
         const lines = data.split('\n')
 
         for (let line of lines) {
-            const tokens = new Set(dataline.split(' '))
+            const tokens = new Set(line.split(' '))
             let intersection = new Set([...tokens].filter(x => words.has(x)));
             if (intersection.count > 0) {
                 return file
