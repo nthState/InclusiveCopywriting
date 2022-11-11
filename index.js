@@ -23,7 +23,7 @@ function checkFile(src, file, words) {
     try {
     
     
-        core.info(`Reading: ${file}, base: ${src}`)
+        core.info(`Reading: ${file}, src: ${src}`)
         
         const data = fs.readFileSync(path.resolve(`${file}`), 'utf8');
 
@@ -57,9 +57,11 @@ async function main() {
         const fileTypeFilter = (core.getInput('fileTypeFilter') || '').split(',').map(t => t.trim());
 
         core.info('Starting...')
+        core.info(`fileTypeFilter: ${fileTypeFilter}`)
         
         //const filesList = fs.readdirSync(src, (err, files) => files.filter((e) => path.extname(e).toLowerCase() === fileTypeFilter));
-        const filesList = getAllFiles(src).filter(file => fileTypeFilter.some(element => { file.endsWith(element)}));
+        //const filesList = getAllFiles(src).filter(file => file.endsWith(fileTypeFilter));
+        const filesList = getAllFiles(src).filter(file => fileTypeFilter.some(element => { file.endsWith(element) }));
  
         const output = filesList.map(file => checkFile(src, file, words)).filter(n => n);
 
