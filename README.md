@@ -28,3 +28,8 @@ A list of files that contain bad words
           words: 'simply, simple, easily, obviously, obvious, he, she, just, blacklist, whitelist, master, slave'
           fileTypeFilter: '.md'
 ```
+
+TODO
+
+- [ ] Add exclude dirs
+- [ ] make src array
