@@ -15,7 +15,7 @@ function checkFile(src, file, words) {
         for (let line of lines) {
             const tokens = new Set(line.split(' '))
             let intersection = new Set([...tokens].filter(x => words.has(x)));
-            if (intersection.count > 0) {
+            if (intersection.size > 0) {
                 return file
             }
         }
@@ -40,7 +40,11 @@ async function main() {
  
         const output = filesList.map(file => checkFile(src, file, words))
 
-        core.setOutput("files", []);
+        core.setOutput("files", output);
+        
+        if (output.length > 0) {
+            return core.setFailed(`Files contain bad words: ${output}`)
+        }
 
     } catch (error) {
       core.setFailed(error.message);
