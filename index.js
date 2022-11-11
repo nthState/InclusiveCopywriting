@@ -25,7 +25,7 @@ function checkFile(src, file, words) {
         core.info(`Error...${err}`)
     }
     
-    return ""
+    return undefined
 }
 
 async function main() {
@@ -38,7 +38,7 @@ async function main() {
         
         const filesList = fs.readdirSync(src, (err, files) => files.filter((e) => path.extname(e).toLowerCase() === fileTypeFilter));
  
-        const output = filesList.map(file => checkFile(src, file, words))
+        const output = filesList.map(file => checkFile(src, file, words)).filter(n => n);
 
         core.setOutput("files", output);
         
