@@ -5,7 +5,7 @@ const fs = require('fs');
 function checkFile(file, words) {
     try {
     
-        core.info('Reading...${file}')
+        core.info(`Reading...${file}`)
 
         fs.readFile(file, 'utf-8', (err, data) => {
             const lines = data.split('\n')
