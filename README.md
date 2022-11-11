@@ -21,9 +21,10 @@ A list of files that contain bad words
 ## Example usage
 
 ```yaml
-uses: actions/BadWordsn@v1
-with:
-  src: './docs'
-  words: 'simply, simple, easily, obviously, obvious, he, she, just, blacklist, whitelist, master, slave'
-  fileTypeFilter: '.md'
+- name: Run Unit Tests
+        uses: nthState/BadWords@v1
+        with:
+          src: './docs'
+          words: 'simply, simple, easily, obviously, obvious, he, she, just, blacklist, whitelist, master, slave'
+          fileTypeFilter: '.md'
 ```
