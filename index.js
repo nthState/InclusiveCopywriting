@@ -43,7 +43,7 @@ function checkFile(src, file, words) {
 
         
     } catch (err) {
-       // core.info(`Error...${err}`)
+        core.info(`Error...${err}`)
     }
     
     return undefined
