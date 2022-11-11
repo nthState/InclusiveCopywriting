@@ -12,15 +12,17 @@ function checkFile(src, file, words) {
 
         const lines = data.split('\n')
 
+        var lineNumber = 0;
         for (let line of lines) {
             const tokens = new Set(line.split(' '))
             let intersection = new Set([...tokens].filter(x => words.has(x)));
             if (intersection.size > 0) {
             
-                core.info(`${file} contains ${intersection.values()}`)
+                core.info(`${file} contains ${Array.from(intersection.values())} at line: ${lineNumber}`)
                 
                 return file
             }
+            lineNumber++;
         }
 
         
