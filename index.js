@@ -17,7 +17,7 @@ function checkFile(src, file, words) {
             let intersection = new Set([...tokens].filter(x => words.has(x)));
             if (intersection.size > 0) {
             
-                core.info(`${file} contains ${intersection}`)
+                core.info(`${file} contains ${intersection.values()}`)
                 
                 return file
             }
