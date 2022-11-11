@@ -1,0 +1,17 @@
+name: 'BadWords'
+description: 'Alert you to words you do not want to be used'
+inputs:
+  src:
+    description: 'Path to check'
+    required: true
+  words:
+    description: 'Disallowed Words'
+    required: true
+  fileTypeFilter:
+    description: 'File types to scan'
+outputs:
+  files:
+    description: 'Files containing bad words'
+runs:
+  using: 'node16'
+  main: 'index.js'
