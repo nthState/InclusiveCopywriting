@@ -12,7 +12,7 @@ const getAllFiles = function(dirPath, arrayOfFiles) {
     if (fs.statSync(dirPath + "/" + file).isDirectory()) {
       arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
     } else {
-      arrayOfFiles.push(path.join( dirPath, "/", file))
+      arrayOfFiles.push(path.join(dirPath, "/", file))
     }
   })
 
@@ -23,7 +23,7 @@ function checkFile(src, file, words) {
     try {
     
     
-        core.info(`Reading: ${file}, src: ${src}`)
+        core.info(`Reading: ${file}`)
         
         const data = fs.readFileSync(path.resolve(`${file}`), 'utf8');
 
