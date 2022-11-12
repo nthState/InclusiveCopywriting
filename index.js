@@ -70,10 +70,10 @@ async function main() {
 
     const output = filtered.map(file => checkFile(file, words)).filter(n => n);
 
-    core.setOutput("files", output);
+    core.setOutput("files_with_errors", output);
 
     if (output.length > 0 && warningsAsErrors) {
-      return core.setFailed(`Files contain bad words: ${output}`)
+      return core.setFailed(`Files contain non-inclusive words: ${output}`)
     }
 
   } catch (error) {
