@@ -1,17 +1,20 @@
-name: 'BadWords'
-description: 'Alert you to words you do not want to be used'
+name: 'InclusiveCopywriting'
+description: 'Scan paths/files for words you do not want to be used'
 inputs:
-  src:
-    description: 'Path to check'
+  include_paths:
+    description: 'Paths to check'
     required: true
-  words:
+  exclude_words:
     description: 'Disallowed Words'
     required: true
   fileTypeFilter:
     description: 'File types to scan'
+  warnings_as_errors:
+    description: 'Should found words be reported as an error'
+    default: true
 outputs:
   files:
-    description: 'Files containing bad words'
+    description: 'Files containing non-inclusive words'
 runs:
   using: 'node16'
   main: 'index.js'

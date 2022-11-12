@@ -52,15 +52,15 @@ function checkFile(src, file, words) {
 
 async function main() {
     try {
-        const src = core.getInput('src');
-        const words = new Set((core.getInput('words') || '').split(',').map(t => t.trim()));
+        const srcs = (core.getInput('include_paths') || '').split(',').map(t => t.trim());
+        const words = new Set((core.getInput('exclude_words') || '').split(',').map(t => t.trim()));
         const fileTypeFilter = (core.getInput('fileTypeFilter') || '').split(',').map(t => t.trim());
+        const warningsAsErrors = core.getBooleanInput('warnings_as_errors')
 
         core.info('Starting...')
         core.info(`fileTypeFilter: ${fileTypeFilter}`)
         
-        //const filesList = fs.readdirSync(src, (err, files) => files.filter((e) => path.extname(e).toLowerCase() === fileTypeFilter));
-        const filesList = getAllFiles(src)
+        const filesList = srcs.flatMap(path => getAllFiles(path));
         
         const filtered = filesList.filter(file => {
             return fileTypeFilter.some(element => {
@@ -72,7 +72,7 @@ async function main() {
 
         core.setOutput("files", output);
         
-        if (output.length > 0) {
+        if (output.length > 0 && warningsAsErrors) {
             return core.setFailed(`Files contain bad words: ${output}`)
         }
 

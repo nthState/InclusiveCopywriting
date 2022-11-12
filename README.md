@@ -1,35 +1,48 @@
-# BadWords javascript action
+# InclusiveCopywriting javascript action
 
-This action will scan your source code and report files containing bad words
+This action will scan your source code and report files containing non-inclusive words
 
 ## Inputs
 
-### `src`
+### `include_paths`
 
-**Required** The path to scan
+**Required** A comma delimited list of paths/files to scan
 
-### `words`
+### `exclude_words`
 
 **Required** A comma delimited list of bad words you want to find
 
+### `fileTypeFilter`
+
+A comma delimited list of file types to scan
+
+### `warnings_as_errors`
+
+If a file is found to contain non-inclusive words, should we report that as an error?
+
 ## Outputs
 
-### `files`
+### `files_with_errors`
 
 A list of files that contain bad words
 
-## Example usage
+## Example usages
 
 ```yaml
-- name: Run Unit Tests
-        uses: nthState/BadWords@v1
+- name: Check for non-inclusive words
+        uses: nthState/InclusiveCopywriting@v1
         with:
-          src: './docs'
-          words: 'simply, simple, easily, obviously, obvious, he, she, just, blacklist, whitelist, master, slave'
+          include_paths: './docs'
+          exclude_words: 'simply, simple, easily, obviously, obvious, he, she, just, blacklist, whitelist, master, slave'
           fileTypeFilter: '.md'
 ```
 
-TODO
-
-- [ ] Add exclude dirs
-- [ ] make src array
+```yaml
+- name: Check for non-inclusive words
+        uses: nthState/InclusiveCopywriting@v1
+        with:
+          include_paths: 'README.md, ./docs'
+          exclude_words: 'simply, simple, easily, obviously, obvious, he, she, just, blacklist, whitelist, master, slave'
+          fileTypeFilter: '.md, .txt'
+          warnings_as_errors: false
+```
