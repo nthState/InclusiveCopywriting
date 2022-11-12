@@ -54,7 +54,7 @@ async function main() {
     try {
         const srcs = (core.getInput('include_paths') || '').split(',').map(t => t.trim());
         const words = new Set((core.getInput('exclude_words') || '').split(',').map(t => t.trim()));
-        const fileTypeFilter = (core.getInput('fileTypeFilter') || '').split(',').map(t => t.trim());
+        const fileTypeFilter = (core.getInput('file_types') || '').split(',').map(t => t.trim());
         const warningsAsErrors = core.getBooleanInput('warnings_as_errors')
 
         core.info('Starting...')

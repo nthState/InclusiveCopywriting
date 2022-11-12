@@ -7,7 +7,7 @@ inputs:
   exclude_words:
     description: 'Disallowed Words'
     required: true
-  fileTypeFilter:
+  file_types:
     description: 'File types to scan'
   warnings_as_errors:
     description: 'Should found words be reported as an error'

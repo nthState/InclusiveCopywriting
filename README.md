@@ -12,7 +12,7 @@ This action will scan your source code and report files containing non-inclusive
 
 **Required** A comma delimited list of bad words you want to find
 
-### `fileTypeFilter`
+### `file_types`
 
 A comma delimited list of file types to scan
 
@@ -34,7 +34,7 @@ A list of files that contain non-inclusive words
         with:
           include_paths: './docs'
           exclude_words: 'simply, simple, easily, obviously, obvious, he, she, just, blacklist, whitelist, master, slave'
-          fileTypeFilter: '.md'
+          file_types: '.md'
 ```
 
 ```yaml
@@ -44,5 +44,5 @@ A list of files that contain non-inclusive words
           include_paths: 'README.md, ./docs'
           exclude_words: 'simply, simple, easily, obviously, obvious, he, she, just, blacklist, whitelist, master, slave'
           fileTypeFilter: '.md, .txt'
-          warnings_as_errors: false
+          file_types: false
 ```
