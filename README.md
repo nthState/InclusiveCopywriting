@@ -30,7 +30,7 @@ A list of files that contain non-inclusive words
 
 ```yaml
 - name: Check for non-inclusive words
-        uses: nthState/InclusiveCopywriting@v1
+        uses: nthState/InclusiveCopywriting@v1.1
         with:
           include_paths: './docs'
           exclude_words: 'simply, simple, easily, obviously, obvious, he, she, just, blacklist, whitelist, master, slave'
@@ -39,7 +39,7 @@ A list of files that contain non-inclusive words
 
 ```yaml
 - name: Check for non-inclusive words
-        uses: nthState/InclusiveCopywriting@v1
+        uses: nthState/InclusiveCopywriting@v1.1
         with:
           include_paths: 'README.md, ./docs'
           exclude_words: 'simply, simple, easily, obviously, obvious, he, she, just, blacklist, whitelist, master, slave'
