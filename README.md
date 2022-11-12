@@ -43,6 +43,6 @@ A list of files that contain non-inclusive words
         with:
           include_paths: 'README.md, ./docs'
           exclude_words: 'simply, simple, easily, obviously, obvious, he, she, just, blacklist, whitelist, master, slave'
-          fileTypeFilter: '.md, .txt'
-          file_types: false
+          file_types: '.md, .txt'
+          warnings_as_errors: false
 ```
