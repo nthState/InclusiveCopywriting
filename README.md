@@ -24,7 +24,7 @@ If a file is found to contain non-inclusive words, should we report that as an e
 
 ### `files_with_errors`
 
-A list of files that contain bad words
+A list of files that contain non-inclusive words
 
 ## Example usages
 
