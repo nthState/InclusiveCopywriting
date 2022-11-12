@@ -19,7 +19,7 @@ const getAllFiles = function(dirPath, arrayOfFiles) {
   return arrayOfFiles
 }
 
-function checkFile(src, file, words) {
+function checkFile(file, words) {
     try {
     
     
@@ -68,7 +68,7 @@ async function main() {
              });
             });
  
-        const output = filtered.map(file => checkFile(src, file, words)).filter(n => n);
+        const output = filtered.map(file => checkFile(file, words)).filter(n => n);
 
         core.setOutput("files", output);
         
