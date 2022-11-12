@@ -1,6 +1,6 @@
 # InclusiveCopywriting javascript action
 
-This action will scan your source code and report files containing non-inclusive words
+This action will scan specific files and report files containing non-inclusive words
 
 ## Inputs
 
